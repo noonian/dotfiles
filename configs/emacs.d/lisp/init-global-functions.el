@@ -8,5 +8,10 @@
   (other-window 1)
   (delete-window))
 
+(defun my/byte-compile-init-dir ()
+  "Byte-compile all your dotfiles."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
+
 (provide 'init-global-functions)
 ;;; init-global-functions.el ends here

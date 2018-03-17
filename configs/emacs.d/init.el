@@ -28,7 +28,6 @@
 (add-to-list 'exec-path "/usr/local/bin")
 
 ;; Install use-package
-
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -38,39 +37,29 @@
 
 ;; Required to enable some use-package functionality
 (use-package delight :ensure t :demand t)
+(use-package bind-key :ensure t :demand t)
 
 ;; Essentials
 
 ;; Configure packages
 
-(use-package init-look-and-feel)
+(require 'init-look-and-feel)
+(require 'init-paredit)
+
+(use-package projectile
+  :ensure t
+  :bind (("C-c p f" . projectile-find-file)))
 
 (use-package init-global-functions
   :bind
-  (("s-\\" . my/delete-other-window)))
+  (("s-\\" . my/delete-other-window)
+   ("<f7>" . (lambda () (interactive) (find-file user-init-file)))))
 
-(use-package emacs
-  :demand t
-  :delight
-  (auto-revert-mode)
-  (text-scale-mode)
-  (eldoc-mode)
-  (emacs-lisp-mode "elisp" :major)
-  (lisp-interaction-mode "elisp-interaction" :major)
-  :bind (("<f7>" . (lambda () (interactive) (find-file user-init-file)))))
-
-(use-package paredit
-  :ensure t
-  :delight
-  :init
-  (progn
-    (add-hook 'emacs-lisp-mode-hook 'paredit-mode)))
-
-(use-package yasnippet
-  :ensure t
-  :defer 10
-  :delight yas-minor-mode
-  :init (yas-global-mode))
+;; (use-package yasnippet
+;;   :ensure t
+;;   :defer 10
+;;   :delight yas-minor-mode
+;;   :init (yas-global-mode))
 
 (use-package magit
   :ensure t
