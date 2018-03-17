@@ -44,6 +44,10 @@
 
 (use-package init-look-and-feel)
 
+(use-package init-global-functions
+  :bind
+  (("s-\\" . my/delete-other-window)))
+
 (use-package paredit
   :ensure t
   :init
