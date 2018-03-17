@@ -1,8 +1,7 @@
-;;; init.el --- My Emacs configuration -*- lexical-binding: t -*-
+;;; init.el --- Emacs configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
-;; Don't hardcode .emacs.d location
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
 
@@ -18,7 +17,6 @@
     ;; For important compatibility libraries like cl-lib
     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
-
 
 ;; Configure load path
 (defconst my/lisp-dir (expand-file-name "lisp" user-emacs-directory))
@@ -38,6 +36,9 @@
 (eval-when-compile
   (require 'use-package))
 
+;; Required to enable some use-package functionality
+(use-package delight :ensure t :demand t)
+
 ;; Essentials
 
 ;; Configure packages
@@ -48,8 +49,19 @@
   :bind
   (("s-\\" . my/delete-other-window)))
 
+(use-package emacs
+  :demand t
+  :delight
+  (auto-revert-mode)
+  (text-scale-mode)
+  (eldoc-mode)
+  (emacs-lisp-mode "elisp" :major)
+  (lisp-interaction-mode "elisp-interaction" :major)
+  :bind (("<f7>" . (lambda () (interactive) (find-file user-init-file)))))
+
 (use-package paredit
   :ensure t
+  :delight
   :init
   (progn
     (add-hook 'emacs-lisp-mode-hook 'paredit-mode)))
@@ -57,6 +69,7 @@
 (use-package yasnippet
   :ensure t
   :defer 10
+  :delight yas-minor-mode
   :init (yas-global-mode))
 
 (use-package magit
@@ -72,4 +85,6 @@
                           'replace)
   )
 
+
+(provide 'init)
 ;;; init.el ends here
