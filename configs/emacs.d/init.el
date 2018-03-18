@@ -46,6 +46,11 @@
 (require 'init-look-and-feel)
 (require 'init-paredit)
 
+(use-package groovy-mode
+  :ensure t
+  :init
+  (setq groovy-indent-offset 2))
+
 (use-package projectile
   :ensure t
   :bind (("C-c p f" . projectile-find-file)))
