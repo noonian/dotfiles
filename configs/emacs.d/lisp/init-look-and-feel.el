@@ -10,11 +10,19 @@
   (eldoc-mode)
   (emacs-lisp-mode "elisp" :major)
   (lisp-interaction-mode "elisp-interaction" :major)
-  :init  
+  :init
   (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
   (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-  (setq inhibit-startup-message t))
+  (setq inhibit-startup-message t)
+  (setq echo-keystrokes 0.1
+	use-dialog-box nil
+	visible-bell t)
+  ;; (setq	ring-bell-function 'ignore)
+)
+
+(use-package autorevert
+  :delight auto-revert-mode)
 
 (use-package linum
   :defer t
@@ -57,5 +65,3 @@
 
 (provide 'init-look-and-feel)
 ;;; init-look-and-feel.el ends here
-
-
