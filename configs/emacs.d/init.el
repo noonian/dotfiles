@@ -58,7 +58,9 @@
 (use-package init-global-functions
   :bind
   (("s-\\" . my/delete-other-window)
-   ("<f7>" . (lambda () (interactive) (find-file user-init-file)))))
+   ("<f7>" . (lambda () (interactive) (find-file user-init-file)))
+   ("C-c k" . eshell/clear)
+   ("C-c s s" . my/start-shell)))
 
 ;; (use-package yasnippet
 ;;   :ensure t
