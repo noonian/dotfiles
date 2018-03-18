@@ -66,8 +66,8 @@
   :defer 5
   :bind (("C-c g" . magit-status))
   :config
-  ;; Don't show recent commits unless a there are local commits
-  ;; not pushed to a configured remote
+  ;; Don't show recent commits unless there are local commits not
+  ;; pushed to a configured remote
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-unpushed-to-upstream
                           'magit-insert-unpushed-to-upstream-or-recent
