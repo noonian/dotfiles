@@ -91,11 +91,11 @@
   :straight t
   :commands (esup))
 
-;; (use-package yasnippet
-;;   :straight t
-;;   :defer 10
-;;   :delight yas-minor-mode
-;;   :init (yas-global-mode))
+(use-package yasnippet
+  :straight t
+  :defer 10
+  :delight yas-minor-mode
+  :init (yas-global-mode))
 
 (use-package magit
   :straight t
@@ -110,6 +110,19 @@
                           'replace)
   )
 
+(use-package evil
+  :straight t
+  :config
+  (use-package evil-surround
+    :straight t
+    :config
+    (global-evil-surround-mode 1))
+  (progn
+    (evil-mode 1)))
+
+(use-package clojure-mode
+  :straight t)
 
 (provide 'init)
+
 ;;; init.el ends here

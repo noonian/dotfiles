@@ -21,6 +21,8 @@
 	visible-bell t)
   ;; (setq	ring-bell-function 'ignore)
 
+  (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
+
   (let ((input-mono "Input Mono 16")
 	(inconsolata "Inconsolata 18")
 	(menlo "Menlo"))
@@ -49,7 +51,7 @@
   ;; (load-theme 'wheatgrass t)
   ;; (load-theme 'brin t)
   ;; (load-theme 'hickey t)
-  ;; (load-theme 'fogus t)
+  (load-theme 'fogus t)
   ;; (load-theme 'graham t)
   ;; (load-theme 'granger t)
   ;; (load-theme 'odersky t)
@@ -67,7 +69,7 @@
 (use-package powerline
   :straight t
   :config
-  ;; (powerline-default-theme)
+  (powerline-default-theme)
   ;; (powerline-center-theme)
   ;; (powerline-center-evil-theme)
   ;; (powerline-vim-theme)
@@ -79,7 +81,7 @@
   :config
   ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-one-light t)
-  (load-theme 'doom-citylights t)
+  ;; (load-theme 'doom-citylights t)
   ;; (load-theme 'doom-darcula t)
   ;; (load-theme 'doom-molokai t)
   ;; (load-theme 'doom-nord t)
@@ -108,7 +110,7 @@
   ;; (load-theme 'airline-hybridline t)
   ;; (load-theme 'airline-kalisi t)
   ;; (load-theme 'airline-kolor t)
-  (load-theme 'airline-light t)
+  ;; (load-theme 'airline-light t)
   ;; (load-theme 'airline-luno t)
   ;; (load-theme 'airline-molokai t)
   ;; (load-theme 'airline-murmur t)
