@@ -69,11 +69,11 @@
 (use-package powerline
   :straight t
   :config
-  (powerline-default-theme)
+  ;; (powerline-default-theme)
   ;; (powerline-center-theme)
-  ;; (powerline-center-evil-theme)
-  ;; (powerline-vim-theme)
+  (powerline-vim-theme)
   ;; (powerline-nano-theme)
+  ;; (powerline-reset)
   )
 
 (use-package doom-themes
