@@ -1,0 +1,4 @@
+{add-cp #cp "cljs"
+ emacs {depends [add-cp]
+        product (str df.core/home-dir "/.emacs.d")
+        update! (df.core/symlink "./configs/emacs.d" product)}}
