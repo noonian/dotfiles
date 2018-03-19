@@ -43,7 +43,7 @@
   :straight t
   :demand t
   :init
-  (eval-after-load "undo-tree-mode" '(delight 'undo-tree))
+  (use-package undo-tree :straight t :delight)
   (use-package face-remap :delight (text-scale-mode)))
 
 (use-package bind-key :straight t :demand t)
