@@ -78,6 +78,28 @@
    ("C-c k" . eshell/clear)
    ("C-c s s" . my/start-shell)))
 
+;; Narrowing completion
+
+(use-package ivy
+  :straight t
+  :commands (ivy-mode)
+  :config
+  (ivy-mode 1))
+
+;; Autocompletion
+
+(use-package company
+  :straight t
+  :init
+  (setq company-idle-delay 0.1)
+  (setq company-minimum-prefix-length 1)
+  :mode (("\\.el\\'" . company-mode)))
+
+;; Emacs init.el profiling
+(use-package esup
+  :straight t
+  :commands (esup))
+
 ;; (use-package yasnippet
 ;;   :straight t
 ;;   :defer 10
