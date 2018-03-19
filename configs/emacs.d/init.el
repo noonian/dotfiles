@@ -37,8 +37,15 @@
 (eval-when-compile
   (require 'use-package))
 
-;; Required to enable some use-package functionality
-(use-package delight :straight t :demand t)
+;; Used to remove modes from minibar
+
+(use-package delight
+  :straight t
+  :demand t
+  :init
+  (eval-after-load "undo-tree-mode" '(delight 'undo-tree))
+  (use-package face-remap :delight (text-scale-mode)))
+
 (use-package bind-key :straight t :demand t)
 
 ;; Configure packages
