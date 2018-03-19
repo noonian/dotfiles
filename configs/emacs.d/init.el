@@ -18,18 +18,8 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; Configure package.el
-;; (setq package-enable-at-startup nil)
-;; (require 'package)
-;; (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-;;                     (not (gnutls-available-p))))
-;;        (proto (if no-ssl "http" "https")))
-;;   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-;;   ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-;;   (when (< emacs-major-version 24)
-;;     ;; For important compatibility libraries like cl-lib
-;;     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
-;; (package-initialize)
+;; Don't load stale byte-compiled files
+(setq load-prefer-newer t)
 
 ;; Configure load path
 (defconst my/lisp-dir (expand-file-name "lisp" user-emacs-directory))
@@ -41,9 +31,6 @@
 (add-to-list 'exec-path "/usr/local/bin")
 
 ;; Install use-package
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
 
 (straight-use-package 'use-package)
 
@@ -54,9 +41,18 @@
 (use-package delight :straight t :demand t)
 (use-package bind-key :straight t :demand t)
 
-;; Essentials
-
 ;; Configure packages
+
+;; Autocompletion
+
+(use-package company
+  :straight t
+  :delight
+  :commands (company-mode)
+  :init
+  (setq company-idle-delay 0.1)
+  (setq company-minimum-prefix-length 1)
+  (add-hook 'emacs-lisp-mode-hook (lambda () (company-mode 1))))
 
 (require 'init-look-and-feel)
 (require 'init-paredit)
@@ -76,24 +72,19 @@
   (("s-\\" . my/delete-other-window)
    ("<f7>" . (lambda () (interactive) (find-file user-init-file)))
    ("C-c k" . eshell/clear)
-   ("C-c s s" . my/start-shell)))
+   ("C-c s s" . my/start-shell)
+   ("s-/" . my/comment-or-uncomment-region-or-line)))
 
 ;; Narrowing completion
 
 (use-package ivy
   :straight t
+  :delight
   :commands (ivy-mode)
+  :bind (("C-s" . swiper)
+	 ("C-x C-f" . counsel-find-file))
   :config
   (ivy-mode 1))
-
-;; Autocompletion
-
-(use-package company
-  :straight t
-  :init
-  (setq company-idle-delay 0.1)
-  (setq company-minimum-prefix-length 1)
-  :mode (("\\.el\\'" . company-mode)))
 
 ;; Emacs init.el profiling
 (use-package esup
