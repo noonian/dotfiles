@@ -3,7 +3,7 @@
 ;;; Code:
 
 (use-package paredit
-  :ensure t
+  :straight t
   :commands (paredit-mode)
   :delight
   :init

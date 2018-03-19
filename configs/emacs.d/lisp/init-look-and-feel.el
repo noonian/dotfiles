@@ -32,7 +32,7 @@
 
 (use-package sublime-themes
   ;; :disabled t
-  :ensure t
+  :straight t
   :config
   ;; (load-theme 'white-sand t)
   ;; (load-theme 'wheatgrass t)
@@ -54,7 +54,7 @@
   )
 
 (use-package powerline
-  :ensure t
+  :straight t
   :config
   (powerline-default-theme)
   ;; (powerline-center-theme)
