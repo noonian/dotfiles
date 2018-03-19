@@ -116,9 +116,11 @@
   (use-package evil-surround
     :straight t
     :config
-    (global-evil-surround-mode 1))
+    ;; (global-evil-surround-mode -1)
+    )
   (progn
-    (evil-mode 1)))
+    (evil-mode -1))
+  )
 
 (use-package clojure-mode
   :straight t)
