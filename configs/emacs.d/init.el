@@ -71,7 +71,10 @@
 
 (use-package projectile
   :straight t
-  :bind (("C-c p f" . projectile-find-file)))
+  :init
+  (use-package counsel-projectile
+    :straight t
+    :bind (("C-c p f" . counsel-projectile-find-file))))
 
 (use-package init-global-functions
   :commands (my/byte-compile-init-dir)
