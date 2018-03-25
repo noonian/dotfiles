@@ -30,9 +30,7 @@
 
 ;; Disable "For information about GNU Emacs and the GNU system, type
 ;; C-h C-a." message on startup
-(eval '(progn
-	 (put 'inhibit-startup-echo-area-message 'saved-value t)
-	 (setq inhibit-startup-echo-area-message (user-login-name))))
+(setq inhibit-startup-echo-area-message "jed")
 
 ;; Configure package.el
 (require 'package)
