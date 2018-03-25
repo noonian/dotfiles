@@ -1,6 +1,25 @@
 ;;; init-global-functions.el --- Globally available functions -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+(require 'dash)
+
+(defun my/rename-string-in-buffer (s replacement)
+  (interactive)
+  (save-excursion
+    (point-min)
+    (while (re-search-forward s nil t)
+      (replace-match replacement))))
+
+;; Doesn't work!
+(defun my/recursively-rename-string-in-files (dir regex s replacement)
+  "Recursively rename occurances of S in DIR with
+REPLACEMENT. DIR may also be a file."
+  (interactive)
+  (let ((files (directory-files-recursively dir regex)))
+    (save-excursion
+      (dolist (file files)
+	(find-file file)
+	(my/rename-string-in-buffer s replacement)))))
 
 (defun my/delete-other-window ()
   "Delete the OTHER window..."
@@ -30,6 +49,13 @@
 
 (defun my/font-installed? (font-name)
   (find-font (font-spec :name font-name)))
+
+(defun my/init-font-stack (fonts)
+  "Set frame font to first installed font in FONTS."
+  (-when-let (font (car fonts))
+    (if (my/font-installed? font)
+	(set-frame-font font nil nil)
+      (my/init-font-stack (cdr fonts)))))
 
 (defconst my/large-frame-width 1000) ;pixels
 (defconst my/large-frame-height 400)

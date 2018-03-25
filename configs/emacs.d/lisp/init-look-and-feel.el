@@ -1,38 +1,7 @@
 ;;; init-look-and-feel.el --- Configure visual aesthetic -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-(require 'init-global-functions)
-
-(use-package emacs
-  :demand t
-  :delight
-  (auto-revert-mode)
-  (text-scale-mode)
-  (eldoc-mode)
-  (emacs-lisp-mode "elisp" :major)
-  (lisp-interaction-mode "elisp-interaction" :major)
-  :init
-  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-  (setq inhibit-startup-message t)
-  (setq echo-keystrokes 0.1
-	use-dialog-box nil
-	visible-bell t)
-  ;; (setq	ring-bell-function 'ignore)
-
-  (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
-
-  (let ((input-mono "Input Mono 16")
-	(inconsolata "Inconsolata 18")
-	(menlo "Menlo"))
-    (cond
-     ((my/font-installed? input-mono) (set-frame-font input-mono nil t))
-     ((my/font-installed? inconsolata) (set-frame-font inconsolata nil t))
-     (t menlo))))
-
-;; (set-frame-font "Input Mono 16" nil t)
-;; (set-frame-font "Inconsolata 18" nil t)
+;; (require 'init-global-functions)
 
 (use-package autorevert
   :delight auto-revert-mode)
@@ -43,15 +12,22 @@
   :config
   (set-face-attribute 'linum nil :height 140))
 
+(use-package moe-theme
+  :ensure t
+  :config
+  ;; (load-theme 'moe-dark t)
+  ;; (load-theme 'moe-light t)
+  )
+
 (use-package sublime-themes
   ;; :disabled t
-  :straight t
+  :ensure t
   :config
   ;; (load-theme 'white-sand t)
   ;; (load-theme 'wheatgrass t)
   ;; (load-theme 'brin t)
   ;; (load-theme 'hickey t)
-  (load-theme 'fogus t)
+  ;; (load-theme 'fogus t)
   ;; (load-theme 'graham t)
   ;; (load-theme 'granger t)
   ;; (load-theme 'odersky t)
@@ -66,18 +42,34 @@
   ;; (set-face-attribute 'region nil :background "#666" :foreground "#ffffff")
   )
 
+(use-package color-theme-sanityinc-tomorrow
+  :ensure t
+  :config
+  (load-theme 'sanityinc-tomorrow-day t)
+  (load-theme 'sanityinc-tomorrow-day-overrides t)
+  )
+
+(use-package smart-mode-line
+  :ensure t
+  :config
+  (setq sml/theme 'dark)
+  (sml/setup)
+  )
+
 (use-package powerline
-  :straight t
+  :ensure t
   :config
   ;; (powerline-default-theme)
   ;; (powerline-center-theme)
-  (powerline-vim-theme)
+  ;; (powerline-vim-theme)
   ;; (powerline-nano-theme)
   ;; (powerline-reset)
   )
 
+
+
 (use-package doom-themes
-  :straight t
+  :ensure t
   :config
   ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-one-light t)
@@ -94,7 +86,7 @@
   )
 
 (use-package airline-themes
-  :straight t
+  :ensure t
   :config
   ;; (load-theme 'airline-badwolf t)
   ;; (load-theme 'airline-base16-gui-dark t)
@@ -126,6 +118,70 @@
   ;; (load-theme 'airline-understated t)
   ;; (load-theme 'airline-wombat t)
   )
+
+(use-package emacs
+  :demand t
+  :delight
+  (auto-revert-mode)
+  (text-scale-mode)
+  (eldoc-mode)
+  (emacs-lisp-mode "elisp" :major)
+  (lisp-interaction-mode "elisp-interaction" :major)
+  :init
+  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+  (setq inhibit-startup-message t)
+  (setq echo-keystrokes 0.1
+	use-dialog-box nil
+	visible-bell t)
+  ;; (setq	ring-bell-function 'ignore)
+
+  :config
+  (use-package init-global-functions
+    :demand t
+    :commands (my/init-font-stack
+	       my/set-frame-size-and-position-to-something-reasonable)
+    :config
+    ;; (my/init-font-stack '("Input Mono 16"
+    ;;                    "Inconsolata 18"
+    ;;                    "Menlo"))
+
+    ;; (let ((input-mono "Input Mono 16")
+    ;;       (inconsolata "Inconsolata 18")
+    ;;       (menlo "Menlo"))
+    ;;   (cond
+    ;;    ((my/font-installed? input-mono) (set-frame-font input-mono nil t))
+    ;;    ((my/font-installed? inconsolata) (set-frame-font inconsolata nil t))
+    ;;    (t menlo)))
+
+    ;; Set font to first installed font in list
+    (add-to-list 'default-frame-alist '(font . "Input Mono 16"))
+
+
+    ;; (my/init-font-stack '("Input Mono 16"
+    ;; 			  "Inconsolata 18"
+    ;; 			  "Menlo"))
+
+    (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
+
+    ;; Make sure to call this *after* setting the font
+    (my/set-frame-size-and-position-to-something-reasonable)
+
+    )
+
+  ;; (let ((input-mono "Input Mono 16")
+  ;; 	(inconsolata "Inconsolata 18")
+  ;; 	(menlo "Menlo"))
+  ;;   (cond
+  ;;    ((my/font-installed? input-mono) (set-frame-font input-mono nil t))
+  ;;    ((my/font-installed? inconsolata) (set-frame-font inconsolata nil t))
+  ;;    (t menlo)))
+  )
+
+;; (set-frame-font "Input Mono 16" nil t)
+;; (set-frame-font "Inconsolata 18" nil t)
+
 
 (provide 'init-look-and-feel)
 ;;; init-look-and-feel.el ends here
