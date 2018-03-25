@@ -1,0 +1,3 @@
+#+TITLE: My dotfiles
+
+My Linux and MacOS dotfiles. Currently just =.emacs.d=.
