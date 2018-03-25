@@ -37,7 +37,7 @@ REPLACEMENT. DIR may also be a file."
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)
-    (eshell-send-input)))
+    (comint-send-input)))
 
 (defun directory-name-base (dirpath)
   (file-name-nondirectory (directory-file-name dirpath)))
