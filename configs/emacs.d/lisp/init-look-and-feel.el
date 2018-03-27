@@ -136,10 +136,15 @@
         use-dialog-box nil
         visible-bell t)
   (defalias 'yes-or-no-p 'y-or-n-p)
+  ;; Don't litter the filesystem with backups
+  (setq backup-directory-alist
+        `(("." . ,(expand-file-name
+                   (concat user-emacs-directory "backups")))))
   (setq default-frame-alist
         '((top . 0) (left . 259)      ;pixels
           (width . 100) (height . 54) ;characters
           (font . "Input Mono 16")))
+
   (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
   ;; (setq      ring-bell-function 'ignore)
   )
