@@ -129,9 +129,11 @@ packages are already installed which improves startup time."
     (let ((indent-tabs-mode nil))
       ad-do-it)))
 
-;; Fix whitespace on save
+;; Fix whitespace on save and always use spaces
 (use-package files
-  :init (setq mode-require-final-newline t)
+  :init
+  (setq mode-require-final-newline t)
+  (setq-default indent-tabs-mode nil)
   :config
   (add-hook 'before-save-hook
             (lambda ()
@@ -139,13 +141,15 @@ packages are already installed which improves startup time."
                   (untabify (point-min) (point-max)))
               (delete-trailing-whitespace))))
 
-;; (use-package groovy-mode
-;;   :ensure t
-;;   :init
-;;   (setq groovy-indent-offset 2))
+(use-package groovy-mode
+  :defer 30
+  :ensure t
+  :config
+  (setq groovy-indent-offset 4))
 
-;; (use-package haskell-mode
-;;   :ensure t)
+(use-package yaml-mode
+  :defer 30
+  :ensure t)
 
 (use-package projectile
   :ensure t
@@ -155,7 +159,8 @@ packages are already installed which improves startup time."
     :bind (("C-c p f" . counsel-projectile-find-file))))
 
 (use-package init-global-functions
-  :commands (my/byte-compile-init-dir)
+  :commands (my/byte-compile-init-dir
+             my/set-frame-size-and-position-to-something-reasonable)
   :bind
   (("s-\\" . my/delete-other-window)
    ("<f7>" . (lambda () (interactive) (find-file user-init-file)))
@@ -171,7 +176,7 @@ packages are already installed which improves startup time."
   :delight
   :commands (ivy-mode)
   :bind (("C-s" . swiper)
-	 ("C-x C-f" . counsel-find-file))
+         ("C-x C-f" . counsel-find-file))
   :config
   (ivy-mode 1))
 

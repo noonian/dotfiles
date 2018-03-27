@@ -133,55 +133,15 @@
   (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
   (setq inhibit-startup-message t)
   (setq echo-keystrokes 0.1
-	use-dialog-box nil
-	visible-bell t)
-  ;; (setq	ring-bell-function 'ignore)
-
-  :config
-  (use-package init-global-functions
-    :demand t
-    :commands (my/init-font-stack
-	       my/set-frame-size-and-position-to-something-reasonable)
-    :config
-    ;; (my/init-font-stack '("Input Mono 16"
-    ;;                    "Inconsolata 18"
-    ;;                    "Menlo"))
-
-    ;; (let ((input-mono "Input Mono 16")
-    ;;       (inconsolata "Inconsolata 18")
-    ;;       (menlo "Menlo"))
-    ;;   (cond
-    ;;    ((my/font-installed? input-mono) (set-frame-font input-mono nil t))
-    ;;    ((my/font-installed? inconsolata) (set-frame-font inconsolata nil t))
-    ;;    (t menlo)))
-
-    ;; Set font to first installed font in list
-    (add-to-list 'default-frame-alist '(font . "Input Mono 16"))
-
-
-    ;; (my/init-font-stack '("Input Mono 16"
-    ;; 			  "Inconsolata 18"
-    ;; 			  "Menlo"))
-
-    (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
-
-    ;; Make sure to call this *after* setting the font
-    (my/set-frame-size-and-position-to-something-reasonable)
-
-    )
-
-  ;; (let ((input-mono "Input Mono 16")
-  ;; 	(inconsolata "Inconsolata 18")
-  ;; 	(menlo "Menlo"))
-  ;;   (cond
-  ;;    ((my/font-installed? input-mono) (set-frame-font input-mono nil t))
-  ;;    ((my/font-installed? inconsolata) (set-frame-font inconsolata nil t))
-  ;;    (t menlo)))
+        use-dialog-box nil
+        visible-bell t)
+  (setq default-frame-alist
+        '((top . 0) (left . 259)      ;pixels
+          (width . 100) (height . 54) ;characters
+          (font . "Input Mono 16")))
+  (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
+  ;; (setq      ring-bell-function 'ignore)
   )
-
-;; (set-frame-font "Input Mono 16" nil t)
-;; (set-frame-font "Inconsolata 18" nil t)
-
 
 (provide 'init-look-and-feel)
 ;;; init-look-and-feel.el ends here
