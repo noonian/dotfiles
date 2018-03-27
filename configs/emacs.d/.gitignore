@@ -1,0 +1,6 @@
+*.elc
+.mach
+auto-save-list
+elpa
+backups
+eshell
