@@ -135,6 +135,7 @@
   (setq echo-keystrokes 0.1
         use-dialog-box nil
         visible-bell t)
+  (defalias 'yes-or-no-p 'y-or-n-p)
   (setq default-frame-alist
         '((top . 0) (left . 259)      ;pixels
           (width . 100) (height . 54) ;characters
