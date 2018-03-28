@@ -135,6 +135,7 @@
   (setq echo-keystrokes 0.1
         use-dialog-box nil
         visible-bell t)
+  (column-number-mode 1)
   (defalias 'yes-or-no-p 'y-or-n-p)
   ;; Don't litter the filesystem with backups
   (setq backup-directory-alist
