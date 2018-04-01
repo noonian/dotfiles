@@ -18,8 +18,8 @@ REPLACEMENT. DIR may also be a file."
   (let ((files (directory-files-recursively dir regex)))
     (save-excursion
       (dolist (file files)
-	(find-file file)
-	(my/rename-string-in-buffer s replacement)))))
+        (find-file file)
+        (my/rename-string-in-buffer s replacement)))))
 
 (defun my/delete-other-window ()
   "Delete the OTHER window..."
@@ -54,7 +54,7 @@ REPLACEMENT. DIR may also be a file."
   "Set frame font to first installed font in FONTS."
   (-when-let (font (car fonts))
     (if (my/font-installed? font)
-	(set-frame-font font nil nil)
+        (set-frame-font font nil nil)
       (my/init-font-stack (cdr fonts)))))
 
 (defconst my/large-frame-width 1000) ;pixels
@@ -119,6 +119,25 @@ REPLACEMENT. DIR may also be a file."
       (goto-char (point-min))
       (while (re-search-forward "\\s-+" nil t)
         (replace-match " ")))))
+
+;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
+(defun my/pop-to-org-agenda (split)
+  "Visit the org agenda, in the current window or a SPLIT."
+  (interactive "P")
+  (org-agenda-list)
+  (when (not split)
+    (delete-other-windows)))
+
+(defun my/org-skip-subtree-if-priority (priority)
+  "Skip an agenda subtree if it has a priority of PRIORITY.
+
+PRIORITY may be one of the characters ?A, ?B, or ?C."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+        (pri-value (* 1000 (- org-lowest-priority priority)))
+        (pri-current (org-get-priority (thing-at-point 'line t))))
+    (if (= pri-value pri-current)
+        subtree-end
+      nil)))
 
 (provide 'init-global-functions)
 ;;; init-global-functions.el ends here

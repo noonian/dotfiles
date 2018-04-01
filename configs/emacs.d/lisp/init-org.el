@@ -7,7 +7,9 @@
 (use-package org
   :ensure t
   :defer t
-  :bind (("C-c c" . org-capture))
+  :bind (("C-c c" . org-capture)
+         ("C-c a" . org-agenda)
+         ("C-c t a" . my/pop-to-org-agenda))
   :init
   (define-obsolete-function-alias 'org-define-error 'define-error)
 
@@ -15,7 +17,9 @@
                                      (plain-list-item . nil)))
 
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WIP(i!)" "|" "DONE(d!)" "CANCELED(c@)")))
+        '((sequence "TODO(t)" "IN-PROGRESS(i!)" "|" "DONE(d!)" "CANCELED(c@)")))
+
+  (setq org-agenda-files '("~/git/projects/life/"))
   :config
   (use-package org-bullets :ensure t)
   (use-package ox-reveal :ensure t)
@@ -28,7 +32,22 @@
              "Todo list item"
              entry
              (file+headline org-default-notes-file "Tasks")
-             "* TODO %?\n  %i\n Context: [[%l][%f]]"))))
+             "* TODO %?\n  %i\n Context: [[%l][%f]]")))
+
+    (setq org-agenda-custom-commands
+          '(("c" "Simple agenda view"
+             ((tags "PRIORITY=\"A\""
+                    ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                     (org-agenda-overriding-header "High-priority unfinished tasks:")))
+              (agenda "" ((org-agenda-span (quote day))))
+              (alltodo ""
+                       ((org-agenda-skip-function
+                         '(or (my/org-skip-subtree-if-priority ?A)
+                              (org-agenda-skip-if nil '(scheduled deadline)))))))
+             ((org-agenda-compact-blocks t)))))
+    )
+
+
 
   (add-hook 'org-mode-hook
             (lambda () (org-bullets-mode 1)))
