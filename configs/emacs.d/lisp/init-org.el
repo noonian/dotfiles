@@ -6,7 +6,7 @@
 ;; org-version
 (use-package org
   :ensure t
-  :defer t
+  :defer 30
   :bind (("C-c c" . org-capture)
          ("C-c a" . org-agenda)
          ("C-c t a" . my/pop-to-org-agenda))

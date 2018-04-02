@@ -111,6 +111,7 @@ packages are already installed which improves startup time."
 
 (use-package company
   :ensure t
+  :defer 10
   :delight
   :commands (company-mode)
   :init
@@ -153,6 +154,7 @@ packages are already installed which improves startup time."
 
 (use-package projectile
   :ensure t
+  :defer 30
   :init
   (use-package counsel-projectile
     :ensure t
@@ -173,6 +175,7 @@ packages are already installed which improves startup time."
 
 (use-package ivy
   :ensure t
+  :defer 30
   :delight
   :commands (ivy-mode)
   :bind (("C-s" . swiper)
@@ -183,6 +186,7 @@ packages are already installed which improves startup time."
 ;; Emacs init.el profiling
 (use-package esup
   :ensure t
+  :defer 30
   :commands (esup))
 
 ;; (use-package yaml-mode
@@ -209,6 +213,7 @@ packages are already installed which improves startup time."
 
 (use-package evil
   :ensure t
+  :defer 30
   :config
   (use-package evil-surround
     :ensure t
@@ -220,7 +225,10 @@ packages are already installed which improves startup time."
   )
 
 (use-package clojure-mode
-  :ensure t)
+  :ensure t
+  :defer 30
+)
+
 
 (require 'init-look-and-feel)
 

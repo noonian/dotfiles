@@ -13,6 +13,7 @@
   (set-face-attribute 'linum nil :height 140))
 
 (use-package moe-theme
+  :disabled t
   :ensure t
   :config
   ;; (load-theme 'moe-dark t)
@@ -20,7 +21,7 @@
   )
 
 (use-package sublime-themes
-  ;; :disabled t
+  :disabled t
   :ensure t
   :config
   ;; (load-theme 'white-sand t)
@@ -57,6 +58,7 @@
   )
 
 (use-package powerline
+  :disabled t
   :ensure t
   :config
   ;; (powerline-default-theme)
@@ -69,6 +71,7 @@
 
 
 (use-package doom-themes
+  :disabled t
   :ensure t
   :config
   ;; (load-theme 'doom-one t)
@@ -86,6 +89,7 @@
   )
 
 (use-package airline-themes
+  :disabled t
   :ensure t
   :config
   ;; (load-theme 'airline-badwolf t)
