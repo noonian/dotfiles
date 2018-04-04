@@ -42,10 +42,30 @@ REPLACEMENT. DIR may also be a file."
 (defun directory-name-base (dirpath)
   (file-name-nondirectory (directory-file-name dirpath)))
 
-(defun my/start-shell ()
+(defun my/buffer-open? (name)
+  (let ((result nil))
+    (dolist (buf (buffer-list))
+      (when (string= name (buffer-name buf))
+        (setq result buf)))
+    result))
+
+(defun my/next-shell-name (&optional suffix)
+  "Return a string named after the current buffer. If the default
+  name already exists increment it by one and return that."
+  (format "*shell*<%s%s>"
+          (directory-name-base default-directory)
+          (if suffix suffix "")))
+
+(defun my/start-shell (&optional create-new?)
   "Start a shell named after the current buffer."
-  (interactive)
-  (shell (format "*shell*<%s>" (directory-name-base default-directory))))
+  (interactive "P")
+  (shell (my/next-shell-name))
+  (let ((n "")
+        (name (my/next-shell-name)))
+    (while (and create-new? (my/buffer-open? name))
+      (setq n (1+ (if (stringp n) 1 n)))
+      (setq name (my/next-shell-name n)))
+    (shell name)))
 
 (defun my/font-installed? (font-name)
   (find-font (font-spec :name font-name)))
