@@ -119,9 +119,19 @@ packages are already installed which improves startup time."
   (setq company-minimum-prefix-length 1)
   (add-hook 'emacs-lisp-mode-hook (lambda () (company-mode 1))))
 
-(require 'init-paredit)
+;; (require 'init-paredit)
 (require 'init-org)
 (require 'init-shell)
+(require 'init-clojure)
+
+(use-package smartparens
+  :ensure t
+  :demand t
+  :config
+  (use-package smartparens-config)
+  (smartparens-global-strict-mode 1)
+  :bind (("C-S-<left>" . sp-forward-barf-sexp)
+         ("C-S-<right>" . sp-forward-slurp-sexp)))
 
 (use-package align
   :config
@@ -223,12 +233,6 @@ packages are already installed which improves startup time."
   (progn
     (evil-mode -1))
   )
-
-(use-package clojure-mode
-  :ensure t
-  :defer 30
-)
-
 
 (require 'init-look-and-feel)
 
