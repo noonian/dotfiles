@@ -123,6 +123,7 @@ packages are already installed which improves startup time."
 (require 'init-org)
 (require 'init-shell)
 (require 'init-clojure)
+(require 'init-javascript)
 
 (use-package smartparens
   :ensure t
