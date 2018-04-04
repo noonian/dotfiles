@@ -38,19 +38,6 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 ;; (package-initialize)
 
-;; Configure straight
-
-;; (let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
-;;       (bootstrap-version 3))
-;;   (unless (file-exists-p bootstrap-file)
-;;     (with-current-buffer
-;;         (url-retrieve-synchronously
-;;          "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-;;          'silent 'inhibit-cookies)
-;;       (goto-char (point-max))
-;;       (eval-print-last-sexp)))
-;;   (load bootstrap-file nil 'nomessage))
-
 ;; Don't load stale byte-compiled files
 (setq load-prefer-newer t)
 
@@ -68,10 +55,6 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
-
-;; Install use-package
-
-;; (straight-use-package 'use-package)
 
 (defun my/package-installed-p (pkg)
   "Check if package is installed. In emacs26 package-installed-p
