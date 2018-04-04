@@ -119,7 +119,6 @@ packages are already installed which improves startup time."
   (setq company-minimum-prefix-length 1)
   (add-hook 'emacs-lisp-mode-hook (lambda () (company-mode 1))))
 
-;; (require 'init-paredit)
 (require 'init-org)
 (require 'init-shell)
 (require 'init-clojure)
