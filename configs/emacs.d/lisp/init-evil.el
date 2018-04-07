@@ -4,12 +4,27 @@
 
 (use-package evil
   :ensure t
-  :commands (evil-mode evil-define-key)
+  :defer 30
   :config
-  (evil-mode 1)
 
   (use-package evil-leader
-    :ensure t))
+    :ensure t
+    :config
+    (global-evil-leader-mode 1))
+
+  (use-package evil-lisp-state
+    :ensure t
+    :config
+    (evil-lisp-state-leader ", l")
+    )
+
+  (use-package evil-surround
+    :ensure t
+    :config
+    (global-evil-surround-mode 1)
+    )
+
+  )
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

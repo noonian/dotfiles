@@ -204,19 +204,6 @@ packages are already installed which improves startup time."
                           'replace)
   )
 
-(use-package evil
-  :ensure t
-  :defer 30
-  :config
-  (use-package evil-surround
-    :ensure t
-    :config
-    ;; (global-evil-surround-mode -1)
-    )
-  (progn
-    (evil-mode -1))
-  )
-
 (require 'init-look-and-feel)
 
 ;;; Finalization
