@@ -32,8 +32,8 @@ REPLACEMENT. DIR may also be a file."
   (interactive)
   (byte-recompile-directory user-emacs-directory 0))
 
-(defun eshell/clear ()
-  "Clear eshell output buffer."
+(defun my/shell-clear ()
+  "Clear shell output buffer."
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)

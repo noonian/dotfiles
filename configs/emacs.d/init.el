@@ -176,7 +176,7 @@ packages are already installed which improves startup time."
   :bind
   (("s-\\" . my/delete-other-window)
    ("<f7>" . (lambda () (interactive) (find-file user-init-file)))
-   ("C-c k" . eshell/clear)
+   ("C-c k" . my/shell-clear)
    ("C-c s s" . my/start-shell)
    ("s-/" . my/comment-or-uncomment-region-or-line)
    ("C-]" . my/just-one-space-in-region)))
