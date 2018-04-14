@@ -19,8 +19,30 @@
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(i!)" "|" "DONE(d!)" "CANCELED(c@)")))
 
-  (setq org-agenda-files '("~/git/projects/life/"))
+  (setq org-agenda-files '("~/git/projects/life/"
+                           "~/git/projects/projects.org"
+                           "~/.emacs.d/notes.org"))
+
+  (setq org-agenda-custom-commands
+        '(("c" "Simple agenda view"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (agenda "" ((org-agenda-span (quote day))))
+            (alltodo ""
+                     ((org-agenda-skip-function
+                       '(or (my/org-skip-subtree-if-priority ?A)
+                            (org-agenda-skip-if nil '(scheduled deadline)))))))
+           ((org-agenda-compact-blocks t)))
+
+          ("p" "Project list"
+           ((tags "project" ()))
+           ((org-agenda-compact-blocks t)
+            (org-tags-match-list-sublevels 'indented))))
+        )
+
   :config
+  (use-package init-global-functions :commands (my/org-skip-subtree-if-priority))
   (use-package org-bullets :ensure t)
   (use-package ox-reveal :ensure t)
   (use-package ox-gfm :ensure t)
@@ -34,17 +56,9 @@
              (file+headline org-default-notes-file "Tasks")
              "* TODO %?\n  %i\n Context: [[%l][%f]]")))
 
-    (setq org-agenda-custom-commands
-          '(("c" "Simple agenda view"
-             ((tags "PRIORITY=\"A\""
-                    ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                     (org-agenda-overriding-header "High-priority unfinished tasks:")))
-              (agenda "" ((org-agenda-span (quote day))))
-              (alltodo ""
-                       ((org-agenda-skip-function
-                         '(or (my/org-skip-subtree-if-priority ?A)
-                              (org-agenda-skip-if nil '(scheduled deadline)))))))
-             ((org-agenda-compact-blocks t)))))
+
+    :config
+
     )
 
 
