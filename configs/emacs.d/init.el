@@ -97,9 +97,22 @@ packages are already installed which improves startup time."
   :defer 10
   :delight
   :commands (company-mode)
+  :bind (:map company-active-map
+              ("M-n" . nil)
+              ("M-p" . nil)
+              ("C-n" . company-select-next)
+              ("C-p" . company-select-previous)
+
+              ;; I'm slowing learning vim bindings
+              ;; ("h" . company-select-previous)
+              ("j" . company-select-next)
+              ("k" . company-select-previous)
+              ;; ("l" . company-select-next)
+              )
   :init
   (setq company-idle-delay 0.1)
   (setq company-minimum-prefix-length 1)
+  (setq company-dabbrev-downcase nil)
   (add-hook 'emacs-lisp-mode-hook (lambda () (company-mode 1))))
 
 (require 'init-org)
@@ -144,6 +157,10 @@ packages are already installed which improves startup time."
 (use-package yaml-mode
   :defer 30
   :ensure t)
+
+(use-package expand-region
+  :ensure t
+  :bind (("C-=" . er/expand-region)))
 
 (use-package projectile
   :ensure t
