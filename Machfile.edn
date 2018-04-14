@@ -1,6 +1,5 @@
 {add-cp #cp "cljs"
  emacs {product (str df.core/home-dir "/.emacs.d")
-        update! (df.core/symlink "./configs/emacs.d" product)
-        clean! (if (df.core/symlinked? product)
-                 #$ ["rm" product]
-                 (println "unable to clean:" product "exists and is not a symlink"))}}
+        novelty (not (df.core/symlinked? "./configs/emacs.d" product))
+        update! (df.core/symlink! "./configs/emacs.d" product)
+        clean!  (df.core/clean-link! "./configs/emacs.d" product)}}
