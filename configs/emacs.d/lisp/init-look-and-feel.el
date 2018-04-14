@@ -150,7 +150,7 @@
           (width . 100) (height . 54) ;characters
           (font . "Input Mono 16")))
 
-  (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
+  ;; (add-hook 'after-change-major-mode-hook (lambda () (text-scale-set 1)))
   ;; (setq      ring-bell-function 'ignore)
   )
 
