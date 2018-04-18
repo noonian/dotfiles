@@ -23,6 +23,11 @@
            ("C-c v" . cider-eval-buffer)
            ("s-t" . cider-test-run-ns-tests)))
 
+  (use-package init-clojure-indentations
+    :config
+    (dolist (item my/clojure-indentations)
+      (put-clojure-indent (car item) (cdr item))))
+
 )
 
 (provide 'init-clojure)
