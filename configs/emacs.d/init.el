@@ -105,8 +105,8 @@ packages are already installed which improves startup time."
 
               ;; I'm slowing learning vim bindings
               ;; ("h" . company-select-previous)
-              ("j" . company-select-next)
-              ("k" . company-select-previous)
+              ;; ("j" . company-select-next)
+              ;; ("k" . company-select-previous)
               ;; ("l" . company-select-next)
               )
   :init
