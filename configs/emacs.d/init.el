@@ -174,7 +174,8 @@ packages are already installed which improves startup time."
   :commands (my/byte-compile-init-dir
              my/set-frame-size-and-position-to-something-reasonable)
   :bind
-  (("s-\\" . my/delete-other-window)
+  (("s-k" . kill-current-buffer)
+   ("s-\\" . my/delete-other-window)
    ("<f7>" . (lambda () (interactive) (find-file user-init-file)))
    ("C-c k" . my/shell-clear)
    ("C-c s s" . my/start-shell)
