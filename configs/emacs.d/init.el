@@ -213,6 +213,13 @@ packages are already installed which improves startup time."
   :defer 5
   :bind (("C-c g" . magit-status))
   :config
+
+  ;; Close splits when opening magit
+  (use-package fullframe
+    :ensure t
+    :config
+    (fullframe magit-status magit-mode-quit-window))
+
   ;; Don't show recent commits unless there are local commits not
   ;; pushed to a configured remote
   (magit-add-section-hook 'magit-status-sections-hook
