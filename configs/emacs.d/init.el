@@ -158,6 +158,9 @@ packages are already installed which improves startup time."
   :defer 30
   :ensure t)
 
+(use-package edit-indirect :ensure t)
+(use-package markdown-mode :ensure t)
+
 (use-package expand-region
   :ensure t
   :bind (("C-=" . er/expand-region)))
