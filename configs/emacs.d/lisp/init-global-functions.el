@@ -159,5 +159,19 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         subtree-end
       nil)))
 
+(defun my/lein-to-cli-dep ()
+  (interactive)
+  (save-excursion
+    (move-beginning-of-line 1)
+    (indent-for-tab-command)
+    (forward-char)
+    (sp-forward-barf-sexp)
+    (sp-forward-barf-sexp)
+    (sp-backward-delete-char)
+    (sp-forward-sexp)
+    (insert " {:mvn/version}")
+    (backward-char)
+    (sp-forward-slurp-sexp)))
+
 (provide 'init-global-functions)
 ;;; init-global-functions.el ends here

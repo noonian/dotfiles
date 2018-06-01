@@ -183,7 +183,8 @@ packages are already installed which improves startup time."
    ("C-c k" . my/shell-clear)
    ("C-c s s" . my/start-shell)
    ("s-/" . my/comment-or-uncomment-region-or-line)
-   ("C-]" . my/just-one-space-in-region)))
+   ("C-]" . my/just-one-space-in-region)
+   ("C-c l d" . my/lein-to-cli-dep)))
 
 ;; Narrowing completion
 
