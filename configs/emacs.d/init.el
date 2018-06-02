@@ -216,7 +216,9 @@ packages are already installed which improves startup time."
 (use-package magit
   :ensure t
   :defer 5
-  :bind (("C-c g" . magit-status))
+  :bind (("C-c g" . magit-status)
+         ("C-c m c" . magit-clone)
+         ("C-c m s" . magit-status))
   :config
 
   ;; Close splits when opening magit
