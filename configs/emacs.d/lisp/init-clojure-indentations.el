@@ -8,6 +8,10 @@
     ;;; Pathom
     (add . 1)
 
+    ;;; Fulcro
+    (render-field . 2)
+    (action . 1)
+
     ;;; Compojure
     (context . 2)
 

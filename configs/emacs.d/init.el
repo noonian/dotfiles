@@ -96,7 +96,7 @@ packages are already installed which improves startup time."
   :ensure t
   :defer 10
   :delight
-  :commands (company-mode)
+  :commands (company-mode global-company-mode)
   :bind (:map company-active-map
               ("M-n" . nil)
               ("M-p" . nil)
@@ -113,12 +113,19 @@ packages are already installed which improves startup time."
   (setq company-idle-delay 0.1)
   (setq company-minimum-prefix-length 1)
   (setq company-dabbrev-downcase nil)
-  (add-hook 'emacs-lisp-mode-hook (lambda () (company-mode 1))))
+  (global-company-mode 1)
+  ;; (add-hook 'emacs-lisp-mode-hook (lambda () (company-mode 1)))
+  )
 
 (require 'init-org)
 (require 'init-shell)
 (require 'init-clojure)
 (require 'init-javascript)
+(require 'init-evil)
+
+(use-package linum
+  :init
+  (global-linum-mode 1))
 
 (use-package smartparens
   :ensure t
@@ -148,6 +155,21 @@ packages are already installed which improves startup time."
                   (untabify (point-min) (point-max)))
               (delete-trailing-whitespace))))
 
+(use-package haskell-mode
+  :ensure t
+  :init
+  (setq haskell-process-args-stack-ghci
+        '("--ghci-options=-ferror-spans -fshow-loaded-modules" "--no-build" "--no-load"))
+  :bind (:map haskell-mode-map
+         ("C-`" . haskell-interactive-bring)
+         ("C-c C-l" . haskell-process-load-file)
+         )
+  :config
+  (use-package hindent
+    :ensure t
+    :config
+    (add-hook 'haskell-mode-hook #'hindent-hook)))
+
 (use-package groovy-mode
   :defer 30
   :ensure t
@@ -157,6 +179,12 @@ packages are already installed which improves startup time."
 (use-package yaml-mode
   :defer 30
   :ensure t)
+
+(use-package web-mode
+  :defer 30
+  :ensure t
+  :init
+  (setq web-mode-markup-indent-offset 2))
 
 (use-package edit-indirect :ensure t)
 (use-package markdown-mode :ensure t)
@@ -184,7 +212,8 @@ packages are already installed which improves startup time."
    ("C-c s s" . my/start-shell)
    ("s-/" . my/comment-or-uncomment-region-or-line)
    ("C-]" . my/just-one-space-in-region)
-   ("C-c l d" . my/lein-to-cli-dep)))
+   ("C-c l d" . my/lein-to-cli-dep)
+   ("s-r" . cider-save-and-refresh)))
 
 ;; Narrowing completion
 
@@ -253,3 +282,4 @@ packages are already installed which improves startup time."
 
 ;; (provide 'init)
 ;;; init.el ends here
+(put 'narrow-to-region 'disabled nil)

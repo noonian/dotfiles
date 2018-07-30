@@ -5,6 +5,8 @@
 (use-package evil
   :ensure t
   :defer 30
+  :init
+  (setq evil-start-state 'emacs)
   :config
 
   (use-package evil-leader

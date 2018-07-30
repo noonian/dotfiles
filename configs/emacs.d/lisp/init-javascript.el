@@ -9,7 +9,7 @@
   ;; Indent body of js switch statement
   (setq js-switch-indent-offset 2)
   ;; Indent 2 spaces
-  (setq js2-basic-offset 2)
+  (setq js-indent-level 2)
 )
 
 (provide 'init-javascript)

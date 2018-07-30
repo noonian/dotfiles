@@ -173,5 +173,20 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (backward-char)
     (sp-forward-slurp-sexp)))
 
+(defun my/haskell-eval-last ()
+  (interactive)
+
+  (let ((buf (buffer-name)))
+    (switch-to-buffer-other-window "*hask*")
+    (haskell-interactive-mode-history-previous 1)
+    (haskell-interactive-mode-return)
+    (switch-to-buffer-other-window buf))
+  )
+
+(defun cider-save-and-refresh ()
+  (interactive)
+  (save-buffer)
+  (call-interactively 'cider-refresh))
+
 (provide 'init-global-functions)
 ;;; init-global-functions.el ends here
