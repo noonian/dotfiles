@@ -199,7 +199,10 @@ packages are already installed which improves startup time."
   :init
   (use-package counsel-projectile
     :ensure t
-    :bind (("C-c p f" . counsel-projectile-find-file))))
+    :bind (("C-c p f" . counsel-projectile-find-file))
+    :config
+    (evil-leader/set-key
+      "p f" 'counsel-projectile-find-file)))
 
 (use-package init-global-functions
   :commands (my/byte-compile-init-dir
@@ -250,6 +253,8 @@ packages are already installed which improves startup time."
          ("C-c m s" . magit-status))
   :config
 
+  (evil-leader/set-key
+    "g" 'magit-status)
   ;; Close splits when opening magit
   (use-package fullframe
     :ensure t

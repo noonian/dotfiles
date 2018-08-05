@@ -53,6 +53,7 @@
     (apply . 1)
     (assoc . 1)
     (assoc-in . 1)
+    (update-in . 1)
     (into . 1)
     (join . 1)
     (merge-with . 1)
