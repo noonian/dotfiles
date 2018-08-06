@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
  '(package-selected-packages
-   '(evil-commentary evil-cleverparens neotree dired-subtree evil-surround evil-lisp-state ob-async ox-gfm ox-reveal org-bullets cider evil-leader fullframe smart-mode-line color-theme-sanityinc-tomorrow magit yasnippet esup counsel-projectile projectile expand-region markdown-mode edit-indirect web-mode yaml-mode groovy-mode hindent haskell-mode smartparens evil rjsx-mode clojure-mode exec-path-from-shell company dash undo-tree delight use-package))
+   '(evil-magit evil-collection evil-smartparens evil-commentary evil-cleverparens neotree dired-subtree evil-surround evil-lisp-state ob-async ox-gfm ox-reveal org-bullets cider evil-leader fullframe smart-mode-line color-theme-sanityinc-tomorrow magit yasnippet esup counsel-projectile projectile expand-region markdown-mode edit-indirect web-mode yaml-mode groovy-mode hindent haskell-mode smartparens evil rjsx-mode clojure-mode exec-path-from-shell company dash undo-tree delight use-package))
  '(safe-local-variable-values
    '((cider-clojure-cli-parameters . "-A:dev -e '(require (quote cider-nrepl.main)) (cider-nrepl.main/init %s)'")
      (cider-cljs-repl-types

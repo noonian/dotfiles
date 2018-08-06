@@ -9,6 +9,15 @@
   (setq evil-start-state 'emacs)
   :config
 
+  (use-package evil-collection
+    :ensure t
+    :config
+    (evil-collection-init))
+
+  (use-package evil-magit
+    :ensure t
+    )
+
   (use-package evil-commentary
     :ensure t
     :bind (:map evil-normal-state-map

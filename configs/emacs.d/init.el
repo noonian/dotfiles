@@ -252,9 +252,12 @@ packages are already installed which improves startup time."
          ("C-c m c" . magit-clone)
          ("C-c m s" . magit-status))
   :config
-
   (evil-leader/set-key
-    "g" 'magit-status)
+    "g" 'magit-status
+    "m c" 'magit-clone
+    "m s" 'magit-status
+    )
+
   ;; Close splits when opening magit
   (use-package fullframe
     :ensure t
